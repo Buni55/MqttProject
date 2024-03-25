@@ -7,9 +7,9 @@ using System.Text.Json;
 
 namespace MqttDeviceSimulator
 {
-    public class DeviceSimulator(ILogger<DeviceSimulator> logger) : BackgroundService
+    public class DeviceSimulatorB(ILogger<DeviceSimulatorB> logger) : BackgroundService
     {
-        private readonly ILogger<DeviceSimulator> _logger = logger;
+        private readonly ILogger<DeviceSimulatorB> _logger = logger;
         private readonly Random _random = new();
         private readonly MqttFactory _mqttFactory = new();
 
@@ -30,7 +30,7 @@ namespace MqttDeviceSimulator
                     string payload = JsonSerializer.Serialize(new { temperature = $"{temperature:0.0}" });
                     
                     var applicationMessage = new MqttApplicationMessageBuilder()
-                        .WithTopic("samples/temperature/living_room")
+                        .WithTopic("samples/temperature/kitchen")
                         .WithPayload(payload)
                         .Build();
 

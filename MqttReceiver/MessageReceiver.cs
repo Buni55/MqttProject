@@ -40,6 +40,7 @@ namespace MqttReceiver
 
                 var mqttSubscribeOptions = new MqttClientSubscribeOptionsBuilder()
                     .WithTopicFilter(f => { f.WithTopic("samples/temperature/living_room"); })
+                    .WithTopicFilter(f => { f.WithTopic("samples/temperature/kitchen"); })
                     .Build();
 
                 await mqttClient.SubscribeAsync(mqttSubscribeOptions, stoppingToken);
