@@ -7,16 +7,11 @@ using System.Text.Json;
 
 namespace MqttDeviceSimulator
 {
-    public class DeviceSimulator : BackgroundService
+    public class DeviceSimulator(ILogger<DeviceSimulator> logger) : BackgroundService
     {
-        private readonly ILogger<DeviceSimulator> _logger;
+        private readonly ILogger<DeviceSimulator> _logger = logger;
         private readonly Random _random = new();
         private readonly MqttFactory _mqttFactory = new();
-
-        public DeviceSimulator(ILogger<DeviceSimulator> logger)
-        {
-            _logger = logger;
-        }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

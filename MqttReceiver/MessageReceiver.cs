@@ -14,15 +14,10 @@ using System.Threading.Tasks;
 
 namespace MqttReceiver
 {
-    public class MessageReceiver : BackgroundService
+    public class MessageReceiver(ILogger<MessageReceiver> logger) : BackgroundService
     {
-        private readonly ILogger<MessageReceiver> _logger;
+        private readonly ILogger<MessageReceiver> _logger = logger;
         private readonly MqttFactory _mqttFactory = new();
-
-        public MessageReceiver(ILogger<MessageReceiver> logger)
-        {
-            _logger = logger;
-        }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
